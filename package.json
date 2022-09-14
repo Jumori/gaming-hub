@@ -1,0 +1,16 @@
+{
+  "name": "nlw9_esports",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Jumori/gaming-hub.git",
+  "author": "Juliana Morikoshi <julianamorikoshi@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "husky": "^8.0.1"
+  }
+}
