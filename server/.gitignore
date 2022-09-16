@@ -1,2 +1,8 @@
-node_modules
-dist
+node_modules/
+dist/
+
+prisma/**/migrations/
+src/**/db.sqlite
+dev.db
+
+*.env*
