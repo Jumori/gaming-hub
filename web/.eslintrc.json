@@ -14,5 +14,7 @@
     "project": ["./tsconfig.json", "./vite.config.ts"]
   },
   "plugins": ["react", "prettier"],
-  "rules": {}
+  "rules": {
+    "@typescript-eslint/no-misused-promises": "off"
+  }
 }
