@@ -8,6 +8,7 @@ import { GameParams } from '../../@types/navigation'
 import { Background } from '../../components/Background'
 import { Heading } from '../../components/Heading'
 import { DuoCard, DuoCardProps } from '../../components/DuoCard'
+import { DuoMatch } from '../../components/DuoMatch'
 
 import logoImg from '../../assets/logo-nlw-esports.png'
 import { styles } from './styles'
@@ -16,6 +17,7 @@ import { api } from '../../services/api'
 
 export const Game: React.FC = () => {
   const [duos, setDuos] = useState<DuoCardProps[]>([])
+  const [discordDuoSelected, setDiscordDuoSelected] = useState('')
 
   const navigation = useNavigation()
   const route = useRoute()
@@ -23,6 +25,15 @@ export const Game: React.FC = () => {
 
   const handleGoBack = (): void => {
     navigation.goBack()
+  }
+
+  const getDiscordUser = async (adsId: string): Promise<void> => {
+    try {
+      const response = await api.get(`/ads/${adsId}/discord`)
+      setDiscordDuoSelected(response.data.discord)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
@@ -65,7 +76,10 @@ export const Game: React.FC = () => {
           data={duos}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
-            <DuoCard data={item} onConnect={() => {}} />
+            <DuoCard
+              data={item}
+              onConnect={async () => await getDiscordUser(item.id)}
+            />
           )}
           horizontal
           contentContainerStyle={[
@@ -78,6 +92,12 @@ export const Game: React.FC = () => {
             </Text>
           )}
           style={styles.containerList}
+        />
+
+        <DuoMatch
+          visible={discordDuoSelected.length > 0}
+          discord={discordDuoSelected}
+          onClose={() => setDiscordDuoSelected('')}
         />
       </SafeAreaView>
     </Background>

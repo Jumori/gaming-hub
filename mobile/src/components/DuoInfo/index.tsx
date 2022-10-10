@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, ColorValue } from 'react-native'
 
 import { THEME } from '../../theme'
-import { styles } from './style'
+import { styles } from './styles'
 
 interface Props {
   label: string

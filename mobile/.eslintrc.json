@@ -16,5 +16,7 @@
   "globals": {
     "__DEV__": "readonly"
   },
-  "rules": {}
+  "rules": {
+    "@typescript-eslint/no-misused-promises": "off"
+  }
 }
